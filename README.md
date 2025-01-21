@@ -1,6 +1,3 @@
-Here's the properly formatted **README.md** file code you can copy directly into your repository:
-
-```markdown
 # Asteroids Pygame
 
 This is a simple implementation of the classic Asteroids game using the Pygame library.
