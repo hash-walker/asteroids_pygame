@@ -3,6 +3,9 @@ from constants import *
 import random
 
 class Asteroid(CircleShape):
+
+    count = 0
+
     def __init__(self, x, y, radius):
         super().__init__(x, y, radius)
     
@@ -13,6 +16,7 @@ class Asteroid(CircleShape):
         self.kill()
 
         if self.radius <= ASTEROID_MIN_RADIUS:
+            Asteroid.count += 1
             return
         else:
             new_angle = random.uniform(20, 50)
