@@ -74,6 +74,4 @@ Contributions are welcome! Feel free to open an issue or submit a pull request f
 ## License
 
 This project is licensed under the MIT License.
-```
-
 This is the raw markdown code for your **README.md** file. You can copy and paste it as-is. Let me know if you need further refinements!
