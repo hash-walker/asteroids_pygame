@@ -28,6 +28,8 @@ def game_loop(screen, clock):
 
     while True:
 
+        lives_deducted = False
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return False
@@ -41,8 +43,14 @@ def game_loop(screen, clock):
             updatable.update(dt)
         
         for asteroid in asteroids:
-            if asteroid.checkcollisions(player):
-                print("Game Over!")
+            if player.invulnerable_timer <= 0:
+                if asteroid.checkcollisions(player):
+                    Player.lives -= 1 
+                    player.invulnerable_timer = 2 
+                    break 
+            
+            if Player.lives == 0:
+                print("Game Over!!")
                 return False
         
         for asteroid in asteroids:
@@ -59,7 +67,11 @@ def game_loop(screen, clock):
         # Draw score
         score = str(Asteroid.count)
         score_card = f"Score: {score}"
+
+        lives = str(Player.lives)
+        lives_card = f"Lives: {lives}"
         button(screen, position_x = - (SCREEN_WIDTH - 200)  / 2, position_y= - (SCREEN_HEIGHT - 50) /2, button_text= score_card , button_color= (0, 0, 0, 0), button_width= 200, button_height= 50, font_size= 36, font_color= "white")
+        button(screen, position_x = (SCREEN_WIDTH - 200)  / 2, position_y= - (SCREEN_HEIGHT - 50) /2, button_text= lives_card , button_color= (0, 0, 0, 0), button_width= 200, button_height= 50, font_size= 36, font_color= "white")
 
         pygame.display.flip()
         dt = clock.tick(60) / 1000
